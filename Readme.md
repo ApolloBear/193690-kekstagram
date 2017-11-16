@@ -1,7 +1,7 @@
-# Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url]
+﻿# Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url]
 
 * Студент: [Александр Парфенов](https://up.htmlacademy.ru/javascript/11/user/193690).
-* Наставник: `Неизвестно`.
+* Наставник: `Арсений Ильяшов`.
 
 ---
 
