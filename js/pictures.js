@@ -26,13 +26,13 @@ for (var i = 0; i <= 24; i++) {
 
   var objectUrl = photoObjects[i].url;
   var pageUrl = document.querySelector('.picture img');
-  pageUrl.setAttribute('src', 'objectUrl');
+  pageUrl.setAttribute('src', objectUrl);
 
   var objectLikes = photoObjects[i].likes;
   var pageLikes = document.querySelector('.picture-likes');
-  pageLikes.textContent = likes.photoObjects;
+  pageLikes.textContent = photoObjects[i].likes;
 
   var objectComments = photoObjects[i].comments;
   var pageComments = document.querySelector('.picture-comments');
-  pageComments.textContent = comments.photoObjects;
+  pageComments.textContent = photoObjects[i].comments;
 }
