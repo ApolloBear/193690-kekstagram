@@ -12,6 +12,9 @@ var objectLikes = getRandomint(15, 200);
 
 var randomComment = objectComments[Math.floor(Math.random() * objectComments.length)];
 
+var popUpOpen = document.querySelector('.gallery-overlay');//не работает если стоит в самом низу?!
+popUpOpen.classList.remove('hidden');//
+
 for (var i = 0; i <= 24; i++) {
   photoObjects[i] = {
     url: 'photos/' + (i + 1) + '.jpg',
@@ -20,23 +23,32 @@ for (var i = 0; i <= 24; i++) {
   };
   var objectUrl = photoObjects[i].url;
   var pageUrl = document.querySelector('#picture-template .picture img');
-  pageUrl.setAttribute('src', objectUrl);
+  // pageUrl.setAttribute('src', objectUrl);
 
   var objectLikes = photoObjects[i].likes;
   var pageLikes = document.querySelector('#picture-template .picture-likes');
-  pageLikes.textContent = photoObjects[i].likes;
+  // pageLikes.textContent = photoObjects[i].likes;
 
   var objectComments = photoObjects[i].comments;
   var pageComments = document.querySelector('#picture-template .picture-comments');
-  pageComments.textContent = photoObjects[i].comments;
+  // pageComments.textContent = photoObjects[i].comments;
 }
 
 function getRandomint() {
   return Math.floor(Math.random() * (200 - 15)) + 15;
 }
 
-var fragment = document.createDocumentFragment();
-fragment.appendChild(photoObjects);
+var cloneObject = function () {
+  var fragment = document.createDocumentFragment();
+  fragment.appendChild(photoObjects);
+  return fragment;
+};
 
-var popUpOpen = document.querySelector('.gallery-overlay');
-popUpOpen.remove
+var popUpImage = document.querySelector('.gallery-overlay-image');
+popUpImage.setAttribute('src', photoObjects[0].url);
+
+var popUpLikes = document.querySelector('.likes-count');
+popUpLikes.textContent = photoObjects[0].likes;
+
+var popUpComments = document.querySelector('.comments-count');
+popUpComments.textContent = photoObjects[0].comments;
