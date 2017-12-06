@@ -12,9 +12,8 @@ var objectLikes = getRandomint(15, 200);
 
 var randomComment = objectComments[Math.floor(Math.random() * objectComments.length)];
 
-//не работает если стоит в самом низу?!
-// var popUpOpen = document.querySelector('.gallery-overlay');
-// popUpOpen.classList.remove('hidden');
+var popUpOpen = document.querySelector('.gallery-overlay');
+popUpOpen.classList.remove('hidden');
 
 for (var i = 0; i <= 24; i++) {
   photoObjects[i] = {
@@ -24,21 +23,17 @@ for (var i = 0; i <= 24; i++) {
   };
   var objectUrl = photoObjects[i].url;
   var pageUrl = document.querySelector('#picture-template .picture img');
-  // pageUrl.setAttribute('src', objectUrl);
 
   var objectLikes = photoObjects[i].likes;
   var pageLikes = document.querySelector('#picture-template .picture-likes');
-  // pageLikes.textContent = photoObjects[i].likes;
 
   var objectComments = photoObjects[i].comments;
   var pageComments = document.querySelector('#picture-template .picture-comments');
-  // pageComments.textContent = photoObjects[i].comments;
 }
 
-//создание клонированных шаблнов
 var renderPhoto = function(photoObjects) {
   var clonePictureTemplate = originalPictureTemplate.cloneNode(true).content;
-  clonePictureTemplate.querySelector('.picture img').setAttribute = photoObjects.url;
+  clonePictureTemplate.querySelector('.picture img').setAttribute('src', photoObjects.url);
   clonePictureTemplate.querySelector('.picture-likes').textContent = photoObjects.likes;
   clonePictureTemplate.querySelector('.picture-comments').textContent = photoObjects.comments;
   return clonePictureTemplate;
@@ -46,22 +41,18 @@ var renderPhoto = function(photoObjects) {
 
 var originalPictureTemplate = document.querySelector('#picture-template');
 
-  var fragment = document.createDocumentFragment();
-  for (var i = 0; i < 25; i++) {
-    fragment.appendChild(renderPhoto(photoObjects[i]));
-  }
+var fragment = document.createDocumentFragment();
+for (var i = 0; i < 25; i++) {
+  fragment.appendChild(renderPhoto(photoObjects[i]));
+}
+
+var pageListPhoto = document.querySelector('.pictures');
+pageListPhoto.appendChild(fragment);
 
 function getRandomint() {
   return Math.floor(Math.random() * (200 - 15)) + 15;
 }
 
-// var cloneObject = function () {
-//   var fragment = document.createDocumentFragment();
-//   fragment.appendChild(photoObjects);
-//   return fragment;
-// };
-
-//pop up
 var popUpImage = document.querySelector('.gallery-overlay-image');
 popUpImage.setAttribute('src', photoObjects[0].url);
 
