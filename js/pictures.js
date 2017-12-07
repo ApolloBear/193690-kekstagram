@@ -27,11 +27,11 @@ for (var i = 0; i <= 24; i++) {
   document.querySelector('#picture-template .picture-comments');
 }
 
-var renderPhoto = function (photoObjects) {
+var renderPhoto = function (photoObject) {
   var clonePictureTemplate = originalPictureTemplate.cloneNode(true).content;
-  clonePictureTemplate.querySelector('.picture img').setAttribute('src', photoObjects.url);
-  clonePictureTemplate.querySelector('.picture-likes').textContent = photoObjects.likes;
-  clonePictureTemplate.querySelector('.picture-comments').textContent = photoObjects.comments;
+  clonePictureTemplate.querySelector('.picture img').setAttribute('src', photoObject.url);
+  clonePictureTemplate.querySelector('.picture-likes').textContent = photoObject.likes;
+  clonePictureTemplate.querySelector('.picture-comments').textContent = photoObject.comments;
   return clonePictureTemplate;
 };
 
