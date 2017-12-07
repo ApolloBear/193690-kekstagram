@@ -1,3 +1,4 @@
+'use strict';
 var photoObjects = [];
 var objectComments = [
   'Всё отлично!',
@@ -21,17 +22,12 @@ for (var i = 0; i <= 24; i++) {
     likes: objectLikes,
     comments: randomComment,
   };
-  var objectUrl = photoObjects[i].url;
-  var pageUrl = document.querySelector('#picture-template .picture img');
-
-  var objectLikes = photoObjects[i].likes;
-  var pageLikes = document.querySelector('#picture-template .picture-likes');
-
-  var objectComments = photoObjects[i].comments;
-  var pageComments = document.querySelector('#picture-template .picture-comments');
+  document.querySelector('#picture-template .picture img');
+  document.querySelector('#picture-template .picture-likes');
+  document.querySelector('#picture-template .picture-comments');
 }
 
-var renderPhoto = function(photoObjects) {
+var renderPhoto = function (photoObjects) {
   var clonePictureTemplate = originalPictureTemplate.cloneNode(true).content;
   clonePictureTemplate.querySelector('.picture img').setAttribute('src', photoObjects.url);
   clonePictureTemplate.querySelector('.picture-likes').textContent = photoObjects.likes;
@@ -42,7 +38,7 @@ var renderPhoto = function(photoObjects) {
 var originalPictureTemplate = document.querySelector('#picture-template');
 
 var fragment = document.createDocumentFragment();
-for (var i = 0; i < 25; i++) {
+for (i = 0; i < 25; i++) {
   fragment.appendChild(renderPhoto(photoObjects[i]));
 }
 
