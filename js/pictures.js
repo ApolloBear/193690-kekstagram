@@ -16,6 +16,11 @@ var randomComment = objectComments[Math.floor(Math.random() * objectComments.len
 var popUpOpen = document.querySelector('.gallery-overlay');
 popUpOpen.classList.remove('hidden');
 
+var popUpClose = document.querySelector('.gallery-overlay-close');
+popUpClose.addEventListener('click', function() {
+  popUpOpen.classList.add('hidden');
+});
+
 for (var i = 0; i <= 24; i++) {
   photoObjects[i] = {
     url: 'photos/' + (i + 1) + '.jpg',
@@ -27,7 +32,7 @@ for (var i = 0; i <= 24; i++) {
   document.querySelector('#picture-template .picture-comments');
 }
 
-var renderPhoto = function (photoObject) {
+var renderPhoto = function(photoObject) {
   var clonePictureTemplate = originalPictureTemplate.cloneNode(true).content;
   clonePictureTemplate.querySelector('.picture img').setAttribute('src', photoObject.url);
   clonePictureTemplate.querySelector('.picture-likes').textContent = photoObject.likes;
@@ -57,3 +62,9 @@ popUpLikes.textContent = photoObjects[0].likes;
 
 var popUpComments = document.querySelector('.comments-count');
 popUpComments.textContent = photoObjects[0].comments;
+
+var picturePage = document.querySelector('.picture');
+var photo = photoObjects.url;
+photo.addEventHandler('click', function(event) {
+  picturePage = event.target;
+});
