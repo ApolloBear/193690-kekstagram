@@ -13,8 +13,8 @@ var objectLikes = getRandomint(15, 200);
 
 var randomComment = objectComments[Math.floor(Math.random() * objectComments.length)];
 
-var popUpOpen = document.querySelector('.gallery-overlay');
-popUpOpen.classList.remove('hidden');
+// var popUpOpen = document.querySelector('.gallery-overlay');
+// popUpOpen.classList.remove('hidden');
 
 var popUpClose = document.querySelector('.gallery-overlay-close');
 popUpClose.addEventListener('click', function() {
@@ -63,8 +63,15 @@ popUpLikes.textContent = photoObjects[0].likes;
 var popUpComments = document.querySelector('.comments-count');
 popUpComments.textContent = photoObjects[0].comments;
 
-var picturePage = document.querySelector('.picture');
-var photo = photoObjects.url;
-photo.addEventHandler('click', function(event) {
-  picturePage = event.target;
+var picturePage = document.querySelector('.picture img');
+picturePage.addEventListener('click', function(event) {
+  var elemPopUp = document.querySelector('.gallery-overlay');
+  elemPopUp.classList.remove('hidden');
+  var elemPhoto = event.target;
+  var elemPhotoImg = elemPhoto.querySelector('.picture img').getAttribute('src');
+  var elemPhotoLike = elemPhoto.querySelector('.picture-likes').textContent;
+  var elemPhotoComment = elemPhoto.querySelector('.picture-comments').textContent;
+  console.log(elemPhotoImg);
+  console.log(elemPhotoLike);
+  console.log(elemPhotoComment);
 });
