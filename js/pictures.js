@@ -13,12 +13,9 @@ var objectLikes = getRandomint(15, 200);
 
 var randomComment = objectComments[Math.floor(Math.random() * objectComments.length)];
 
-// var popUpOpen = document.querySelector('.gallery-overlay');
-// popUpOpen.classList.remove('hidden');
-
 var popUpClose = document.querySelector('.gallery-overlay-close');
 popUpClose.addEventListener('click', function() {
-  popUpOpen.classList.add('hidden');
+  document.querySelector('.gallery-overlay').classList.add('hidden');
 });
 
 for (var i = 0; i <= 24; i++) {
@@ -63,15 +60,29 @@ popUpLikes.textContent = photoObjects[0].likes;
 var popUpComments = document.querySelector('.comments-count');
 popUpComments.textContent = photoObjects[0].comments;
 
-var picturePage = document.querySelector('.picture img');
-picturePage.addEventListener('click', function(event) {
+var picturePage = document.querySelectorAll('.picture');
+
+var pictureClickHandler = function(event) {
+  event.preventDefault();
+  console.log(event.currentTarget);
   var elemPopUp = document.querySelector('.gallery-overlay');
   elemPopUp.classList.remove('hidden');
-  var elemPhoto = event.target;
+  var elemPhoto = event.currentTarget;
   var elemPhotoImg = elemPhoto.querySelector('.picture img').getAttribute('src');
   var elemPhotoLike = elemPhoto.querySelector('.picture-likes').textContent;
   var elemPhotoComment = elemPhoto.querySelector('.picture-comments').textContent;
   console.log(elemPhotoImg);
   console.log(elemPhotoLike);
   console.log(elemPhotoComment);
+  setPicturePage(elemPhotoImg, elemPhotoLike, elemPhotoComment);
+}
+
+var setPicturePage = function (elemImg, elemLike, elemComment) {
+  document.querySelector('.gallery-overlay-image').setAttribute('src', elemImg);
+  document.querySelector('.gallery-overlay-controls-like .likes-count').textContent = elemLike;
+  document.querySelector('.gallery-overlay-controls-comments .comments-count').textContent = elemComment;
+};
+
+picturePage.forEach(function (picture) {
+  picture.addEventListener('click', pictureClickHandler);
 });
