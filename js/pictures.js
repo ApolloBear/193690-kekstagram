@@ -13,6 +13,11 @@ var objectLikes = getRandomint(15, 200);
 
 var randomComment = objectComments[Math.floor(Math.random() * objectComments.length)];
 
+var popUpOpen = document.querySelector('.gallery-overlay');
+
+var KEYCODE_ESC = 27;
+var KEYCODE_ENTER = 13;
+
 var popUpClose = document.querySelector('.gallery-overlay-close');
 popUpClose.addEventListener('click', function() {
   document.querySelector('.gallery-overlay').classList.add('hidden');
@@ -75,14 +80,43 @@ var pictureClickHandler = function(event) {
   console.log(elemPhotoLike);
   console.log(elemPhotoComment);
   setPicturePage(elemPhotoImg, elemPhotoLike, elemPhotoComment);
-}
+};
 
-var setPicturePage = function (elemImg, elemLike, elemComment) {
+var setPicturePage = function(elemImg, elemLike, elemComment) {
   document.querySelector('.gallery-overlay-image').setAttribute('src', elemImg);
   document.querySelector('.gallery-overlay-controls-like .likes-count').textContent = elemLike;
   document.querySelector('.gallery-overlay-controls-comments .comments-count').textContent = elemComment;
 };
 
-picturePage.forEach(function (picture) {
+picturePage.forEach(function(picture) {
   picture.addEventListener('click', pictureClickHandler);
 });
+
+document.querySelector('.picture').setAttribute('tabindex', '0');
+document.querySelector('.gallery-overlay-close').setAttribute('tabindex', '0');
+//когда открыт поп ап
+// document.querySelectorAll('.picture img').setAttribute('tabindex', '-1');
+
+var keyboardOpen = document.querySelector('.picture');
+keyboardOpen.addEventListener('keydown', function(event) {
+  event.preventDefault();
+  if (event.keyCode === KEYCODE_ENTER) {
+    document.querySelector('.gallery-overlay').classList.remove('hidden');
+  }
+});
+
+var keyboardClose = document.querySelector('.gallery-overlay-close');
+keyboardClose.addEventListener('keydown', function(event) {
+  event.preventDefault();
+  if (event.keyCode === KEYCODE_ENTER) {
+    document.querySelector('.gallery-overlay').classList.add('hidden');
+  }
+});
+
+// var keyboardClose = document.querySelector('.gallery-overlay');
+// keyboardClose.addEventListener('keydown', function(event) {
+//   event.preventDefault();
+//   if (event.keyCode === KEYCODE_ENTER) {
+//     document.querySelector('.gallery-overlay').classList.add('hidden');
+//   }
+// });
