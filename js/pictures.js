@@ -102,7 +102,6 @@ keyboardClose.addEventListener('keydown', function (event) {
   }
 });
 
-var keyboardClose = document.querySelector('.gallery-overlay');
 keyboardClose.addEventListener('keydown', function (event) {
   event.preventDefault();
   if (event.keyCode === KEYCODE_ESC) {
