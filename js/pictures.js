@@ -13,13 +13,11 @@ var objectLikes = getRandomint(15, 200);
 
 var randomComment = objectComments[Math.floor(Math.random() * objectComments.length)];
 
-var popUpOpen = document.querySelector('.gallery-overlay');
-
 var KEYCODE_ESC = 27;
 var KEYCODE_ENTER = 13;
 
 var popUpClose = document.querySelector('.gallery-overlay-close');
-popUpClose.addEventListener('click', function() {
+popUpClose.addEventListener('click', function () {
   document.querySelector('.gallery-overlay').classList.add('hidden');
 });
 
@@ -34,7 +32,7 @@ for (var i = 0; i <= 24; i++) {
   document.querySelector('#picture-template .picture-comments');
 }
 
-var renderPhoto = function(photoObject) {
+var renderPhoto = function (photoObject) {
   var clonePictureTemplate = originalPictureTemplate.cloneNode(true).content;
   clonePictureTemplate.querySelector('.picture img').setAttribute('src', photoObject.url);
   clonePictureTemplate.querySelector('.picture-likes').textContent = photoObject.likes;
@@ -67,53 +65,46 @@ popUpComments.textContent = photoObjects[0].comments;
 
 var picturePage = document.querySelectorAll('.picture');
 
-var pictureClickHandler = function(event) {
+var pictureClickHandler = function (event) {
   event.preventDefault();
-  console.log(event.currentTarget);
   var elemPopUp = document.querySelector('.gallery-overlay');
   elemPopUp.classList.remove('hidden');
   var elemPhoto = event.currentTarget;
   var elemPhotoImg = elemPhoto.querySelector('.picture img').getAttribute('src');
   var elemPhotoLike = elemPhoto.querySelector('.picture-likes').textContent;
   var elemPhotoComment = elemPhoto.querySelector('.picture-comments').textContent;
-  console.log(elemPhotoImg);
-  console.log(elemPhotoLike);
-  console.log(elemPhotoComment);
   setPicturePage(elemPhotoImg, elemPhotoLike, elemPhotoComment);
 };
 
-var setPicturePage = function(elemImg, elemLike, elemComment) {
+var setPicturePage = function (elemImg, elemLike, elemComment) {
   document.querySelector('.gallery-overlay-image').setAttribute('src', elemImg);
   document.querySelector('.gallery-overlay-controls-like .likes-count').textContent = elemLike;
   document.querySelector('.gallery-overlay-controls-comments .comments-count').textContent = elemComment;
 };
 
-picturePage.forEach(function(picture) {
+picturePage.forEach(function (picture) {
   picture.addEventListener('click', pictureClickHandler);
 });
 
 var keyboardOpen = document.querySelector('.picture');
-keyboardOpen.addEventListener('keydown', function(event) {
+keyboardOpen.addEventListener('keydown', function (event) {
   event.preventDefault();
-  // document.querySelector('.picture').setAttribute('tabindex', '-1');
   if (event.keyCode === KEYCODE_ENTER) {
     document.querySelector('.gallery-overlay').classList.remove('hidden');
   }
 });
 
 var keyboardClose = document.querySelector('.gallery-overlay-close');
-keyboardClose.addEventListener('keydown', function(event) {
+keyboardClose.addEventListener('keydown', function (event) {
   event.preventDefault();
-  // document.querySelector('.picture').setAttribute('tabindex', '-1');
   if (event.keyCode === KEYCODE_ENTER) {
     document.querySelector('.gallery-overlay').classList.add('hidden');
   }
 });
 
 var keyboardClose = document.querySelector('.gallery-overlay');
-keyboardClose.addEventListener('keydown', function(event) {
+keyboardClose.addEventListener('keydown', function (event) {
   event.preventDefault();
-  // document.querySelector('.picture').setAttribute('tabindex', '-1');
   if (event.keyCode === KEYCODE_ESC) {
     document.querySelector('.gallery-overlay').classList.add('hidden');
   }
