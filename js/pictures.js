@@ -76,6 +76,8 @@ var pictureClickHandler = function(event) {
   var elemPhotoImg = elemPhoto.querySelector('.picture img').getAttribute('src');
   var elemPhotoLike = elemPhoto.querySelector('.picture-likes').textContent;
   var elemPhotoComment = elemPhoto.querySelector('.picture-comments').textContent;
+  // var photoIndex = document.querySelectorAll('.picture');
+  picturePage.setAttribute('tabindex', '-1');
   console.log(elemPhotoImg);
   console.log(elemPhotoLike);
   console.log(elemPhotoComment);
@@ -92,14 +94,16 @@ picturePage.forEach(function(picture) {
   picture.addEventListener('click', pictureClickHandler);
 });
 
-document.querySelector('.picture').setAttribute('tabindex', '0');
-document.querySelector('.gallery-overlay-close').setAttribute('tabindex', '0');
+// document.querySelector('.picture').setAttribute('tabindex', '0');
+// document.querySelector('.gallery-overlay-image').setAttribute('tabindex', '0');
+// document.querySelector('.gallery-overlay .gallery-overlay-close').setAttribute('tabindex', '0');
 //когда открыт поп ап
 // document.querySelectorAll('.picture img').setAttribute('tabindex', '-1');
 
 var keyboardOpen = document.querySelector('.picture');
 keyboardOpen.addEventListener('keydown', function(event) {
-  event.preventDefault();
+  // event.preventDefault();
+  // document.querySelector('.picture').setAttribute('tabindex', '-1');
   if (event.keyCode === KEYCODE_ENTER) {
     document.querySelector('.gallery-overlay').classList.remove('hidden');
   }
@@ -107,16 +111,18 @@ keyboardOpen.addEventListener('keydown', function(event) {
 
 var keyboardClose = document.querySelector('.gallery-overlay-close');
 keyboardClose.addEventListener('keydown', function(event) {
-  event.preventDefault();
+  // event.preventDefault();
+  // document.querySelector('.picture').setAttribute('tabindex', '-1');
   if (event.keyCode === KEYCODE_ENTER) {
     document.querySelector('.gallery-overlay').classList.add('hidden');
   }
 });
 
-// var keyboardClose = document.querySelector('.gallery-overlay');
-// keyboardClose.addEventListener('keydown', function(event) {
-//   event.preventDefault();
-//   if (event.keyCode === KEYCODE_ENTER) {
-//     document.querySelector('.gallery-overlay').classList.add('hidden');
-//   }
-// });
+var keyboardClose = document.querySelector('.gallery-overlay');
+keyboardClose.addEventListener('keydown', function(event) {
+  // event.preventDefault();
+  // document.querySelector('.picture').setAttribute('tabindex', '-1');
+  if (event.keyCode === KEYCODE_ESC) {
+    document.querySelector('.gallery-overlay').classList.add('hidden');
+  }
+});
