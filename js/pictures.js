@@ -101,7 +101,7 @@ document.querySelector('.gallery-overlay-close').addEventListener('keydown', fun
   }
 });
 
-document.querySelector('.gallery-overlay-close').addEventListener('keydown', function (event) {
+document.addEventListener('keydown', function (event) {
   if (event.keyCode === KEYCODE_ESC) {
     document.querySelector('.gallery-overlay').classList.add('hidden');
   }
