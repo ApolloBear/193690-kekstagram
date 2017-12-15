@@ -94,16 +94,14 @@ keyboardOpen.addEventListener('keydown', function (event) {
   }
 });
 
-var keyboardClose = document.querySelector('.gallery-overlay-close');
-keyboardClose.addEventListener('keydown', function (event) {
+document.querySelector('.gallery-overlay-close').addEventListener('keydown', function (event) {
   event.preventDefault();
   if (event.keyCode === KEYCODE_ENTER) {
     document.querySelector('.gallery-overlay').classList.add('hidden');
   }
 });
 
-keyboardClose.addEventListener('keydown', function (event) {
-  event.preventDefault();
+document.querySelector('.gallery-overlay-close').addEventListener('keydown', function (event) {
   if (event.keyCode === KEYCODE_ESC) {
     document.querySelector('.gallery-overlay').classList.add('hidden');
   }
