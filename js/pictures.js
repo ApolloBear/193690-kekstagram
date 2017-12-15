@@ -106,3 +106,7 @@ document.addEventListener('keydown', function (event) {
     document.querySelector('.gallery-overlay').classList.add('hidden');
   }
 });
+
+document.querySelector('#upload-select-image').addEventListener('change', function (){
+  document.querySelector('.upload-overlay').classList.remove('hidden');
+});
