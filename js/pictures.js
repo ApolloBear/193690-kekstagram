@@ -110,3 +110,29 @@ document.addEventListener('keydown', function (event) {
 document.querySelector('#upload-select-image').addEventListener('change', function (){
   document.querySelector('.upload-overlay').classList.remove('hidden');
 });
+
+document.querySelector('.upload-form-cancel').addEventListener('click', function (){
+  document.querySelector('.upload-overlay').classList.add('hidden');
+});
+
+document.addEventListener('keydown', function (event) {
+  if (event.keyCode === KEYCODE_ESC) {
+    document.querySelector('.upload-overlay').classList.add('hidden');
+  }
+});
+
+document.querySelector('.upload-form-cancel').addEventListener('keydown', function (event) {
+  event.preventDefault();
+  if (event.keyCode === KEYCODE_ENTER) {
+    document.querySelector('.upload-overlay').classList.add('hidden');
+  }
+});
+
+var formScale = document.querySelector('.upload-resize-controls-value');
+var stepScale = '25%';
+var minScale = '25%';
+var maxScale = '100%';
+
+document.querySelector('.upload-effect-controls').addEventListener('click', function (event) {
+
+});
