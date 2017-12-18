@@ -17,7 +17,7 @@ var KEYCODE_ESC = 27;
 var KEYCODE_ENTER = 13;
 
 var popUpClose = document.querySelector('.gallery-overlay-close');
-popUpClose.addEventListener('click', function () {
+popUpClose.addEventListener('click', function() {
   document.querySelector('.gallery-overlay').classList.add('hidden');
 });
 
@@ -32,7 +32,7 @@ for (var i = 0; i <= 24; i++) {
   document.querySelector('#picture-template .picture-comments');
 }
 
-var renderPhoto = function (photoObject) {
+var renderPhoto = function(photoObject) {
   var clonePictureTemplate = originalPictureTemplate.cloneNode(true).content;
   clonePictureTemplate.querySelector('.picture img').setAttribute('src', photoObject.url);
   clonePictureTemplate.querySelector('.picture-likes').textContent = photoObject.likes;
@@ -65,7 +65,7 @@ popUpComments.textContent = photoObjects[0].comments;
 
 var picturePage = document.querySelectorAll('.picture');
 
-var pictureClickHandler = function (event) {
+var pictureClickHandler = function(event) {
   event.preventDefault();
   var elemPopUp = document.querySelector('.gallery-overlay');
   elemPopUp.classList.remove('hidden');
@@ -76,59 +76,61 @@ var pictureClickHandler = function (event) {
   setPicturePage(elemPhotoImg, elemPhotoLike, elemPhotoComment);
 };
 
-var setPicturePage = function (elemImg, elemLike, elemComment) {
+var setPicturePage = function(elemImg, elemLike, elemComment) {
   document.querySelector('.gallery-overlay-image').setAttribute('src', elemImg);
   document.querySelector('.gallery-overlay-controls-like .likes-count').textContent = elemLike;
   document.querySelector('.gallery-overlay-controls-comments .comments-count').textContent = elemComment;
 };
 
-picturePage.forEach(function (picture) {
+picturePage.forEach(function(picture) {
   picture.addEventListener('click', pictureClickHandler);
 });
 
 var keyboardOpen = document.querySelector('.picture');
-keyboardOpen.addEventListener('keydown', function (event) {
+keyboardOpen.addEventListener('keydown', function(event) {
   event.preventDefault();
   if (event.keyCode === KEYCODE_ENTER) {
     document.querySelector('.gallery-overlay').classList.remove('hidden');
   }
 });
 
-document.querySelector('.gallery-overlay-close').addEventListener('keydown', function (event) {
+document.querySelector('.gallery-overlay-close').addEventListener('keydown', function(event) {
   event.preventDefault();
   if (event.keyCode === KEYCODE_ENTER) {
     document.querySelector('.gallery-overlay').classList.add('hidden');
   }
 });
 
-document.addEventListener('keydown', function (event) {
+document.addEventListener('keydown', function(event) {
   if (event.keyCode === KEYCODE_ESC) {
     document.querySelector('.gallery-overlay').classList.add('hidden');
   }
 });
 
-document.querySelector('#upload-select-image').addEventListener('change', function (){
-  document.querySelector('.upload-overlay').classList.remove('hidden');
+document.querySelector('#upload-select-image').addEventListener('change', function() {
+  if (document.activeElement.className !== 'upload-form-description') {
+    document.querySelector('.upload-overlay').classList.remove('hidden');
+  }
 });
 
-document.querySelector('.upload-form-cancel').addEventListener('click', function (){
+document.querySelector('.upload-form-cancel').addEventListener('click', function() {
   document.querySelector('.upload-overlay').classList.add('hidden');
 });
 
-document.addEventListener('keydown', function (event) {
+document.addEventListener('keydown', function(event) {
   if (event.keyCode === KEYCODE_ESC) {
     document.querySelector('.upload-overlay').classList.add('hidden');
   }
 });
 
-document.querySelector('.upload-form-cancel').addEventListener('keydown', function (event) {
+document.querySelector('.upload-form-cancel').addEventListener('keydown', function(event) {
   event.preventDefault();
   if (event.keyCode === KEYCODE_ENTER) {
     document.querySelector('.upload-overlay').classList.add('hidden');
   }
 });
 
-document.querySelector('.upload-form-submit').addEventListener('click', function (){
+document.querySelector('.upload-form-submit').addEventListener('click', function() {
   document.querySelector('#upload-select-image').getAttribute('action');
 });
 
@@ -143,50 +145,57 @@ document.querySelector('.upload-form-submit').addEventListener('click', function
 //   document.querySelector('.upload-form-description').focus();
 // };
 
-var formScale = document.querySelector('.upload-resize-controls-value');
-var scales = ['25%', '50%', '75%', '100%']
-var stepScale = '25%';
-var minScale = '25%';
-var maxScale = '100%';
-
 //Через делегирование - не реализовано
-document.querySelector('.upload-effect-controls').addEventListener('click', function(event){
-  if (event.target && event.nodeName == 'LABEL') {
-    var effects = event.currentTarget;
-    var photoEffect = effects.querySelector('.upload-effect-label').getAttribute('class');
-  }
+// document.querySelector('.upload-effect-controls').addEventListener('click', function(event) {
+//   if (event.target && event.nodeName == 'LABEL') {
+//     var effects = event.currentTarget;
+//     var photoEffect = effects.querySelector('.upload-effect-label').getAttribute('class');
+//   }
+// });
+
+document.querySelector('.upload-effect-controls').addEventListener('click', function(){
+  var target = event.target;
 });
 
-document.querySelector('.upload-effect-label').addEventListener('click', function (){
-  document.querySelector('.effect-image-preview').classList.add('effect-none');
-});
-
-document.querySelector('.upload-effect-label-chrome').addEventListener('click', function (){
-  document.querySelector('.effect-image-preview').classList.add('effect-chrome');
-});
-
-document.querySelector('.upload-effect-label-sepia').addEventListener('click', function (){
-  document.querySelector('.effect-image-preview').classList.add('effect-sepia');
-});
-
-document.querySelector('.upload-effect-label-marvin').addEventListener('click', function (){
-  document.querySelector('.effect-image-preview').classList.add('effect-marvin');
-});
-
-document.querySelector('.upload-effect-label-phobos').addEventListener('click', function (){
-  document.querySelector('.effect-image-preview').classList.add('effect-phobos');
-});
-
-document.querySelector('.upload-effect-label-heat').addEventListener('click', function (){
-  document.querySelector('.effect-image-preview').classList.add('effect-heat');
-});
+var formScale = document.querySelector('.upload-resize-controls-value');
+var scales = ['25%', '50%', '75%', '100%'];
+document.querySelector('.upload-resize-controls-value').setAttribute('value', scales[1]);
 
 var valuePhoto = document.querySelector('.upload-resize-controls-value').getAttribute('value');
 
-var buttonDec = document.querySelector('.upload-resize-controls-button-dec').addEventListener('click', function () {
+var buttonDec = document.querySelector('.upload-resize-controls-button-dec').addEventListener('click', function() {
   document.querySelector('.upload-resize-controls-value').setAttribute('value', valuePhoto - stepScale);
 });
 
-var buttonInc = document.querySelector('.upload-resize-controls-button-inc').addEventListener('click', function () {
-  document.querySelector('.upload-resize-controls-value').setAttribute('value', valuePhoto - stepScale);
+var buttonInc = document.querySelector('.upload-resize-controls-button-inc').addEventListener('click', function() {
+  document.querySelector('.upload-resize-controls-value').setAttribute('value', valuePhoto + stepScale);
 });
+
+// var stepScale = 25;
+// var minScale = 25;
+// var maxScale = 100;
+
+//
+// document.querySelector('.upload-effect-label').addEventListener('click', function() {
+//   document.querySelector('.effect-image-preview').classList.add('effect-none');
+// });
+//
+// document.querySelector('.upload-effect-label-chrome').addEventListener('click', function() {
+//   document.querySelector('.effect-image-preview').classList.add('effect-chrome');
+// });
+//
+// document.querySelector('.upload-effect-label-sepia').addEventListener('click', function() {
+//   document.querySelector('.effect-image-preview').classList.add('effect-sepia');
+// });
+//
+// document.querySelector('.upload-effect-label-marvin').addEventListener('click', function() {
+//   document.querySelector('.effect-image-preview').classList.add('effect-marvin');
+// });
+//
+// document.querySelector('.upload-effect-label-phobos').addEventListener('click', function() {
+//   document.querySelector('.effect-image-preview').classList.add('effect-phobos');
+// });
+//
+// document.querySelector('.upload-effect-label-heat').addEventListener('click', function() {
+//   document.querySelector('.effect-image-preview').classList.add('effect-heat');
+// });
