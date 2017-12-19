@@ -153,8 +153,31 @@ document.querySelector('.upload-form-submit').addEventListener('click', function
 //   }
 // });
 
-document.querySelector('.upload-effect-controls').addEventListener('click', function(){
-  var target = event.target;
+// target.querySelector('.upload-effect-controls input').getAttribute('value');
+
+document.querySelector('.upload-effect-controls').addEventListener('click', function(event) {
+  var valueTarget = querySelector('.upload-effect-controls input').getAttribute('value');
+  var target = event.Target;
+  switch (target) {
+    case none:
+      document.querySelector('.effect-image-preview').classList.add('.effect-none');
+      break;
+    case chrome:
+      document.querySelector('.effect-image-preview').classList.add('.effect-chrome');
+      break;
+    case sepia:
+      document.querySelector('.effect-image-preview').classList.add('.effect-sepia');
+      break;
+    case marvin:
+      document.querySelector('.effect-image-preview').classList.add('.effect-marvin');
+      break;
+    case phobos:
+      document.querySelector('.effect-image-preview').classList.add('.effect-phobos');
+      break;
+    case heat:
+      document.querySelector('.effect-image-preview').classList.add('.effect-heat');
+      break;
+  }
 });
 
 var formScale = document.querySelector('.upload-resize-controls-value');
