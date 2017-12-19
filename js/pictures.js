@@ -154,10 +154,10 @@ document.querySelector('.upload-form-submit').addEventListener('click', function
 // });
 
 // target.querySelector('.upload-effect-controls input').getAttribute('value');
+// var value = querySelector('.upload-effect-controls input').getAttribute('value');
 
 document.querySelector('.upload-effect-controls').addEventListener('click', function(event) {
-  var valueTarget = querySelector('.upload-effect-controls input').getAttribute('value');
-  var target = event.Target;
+  var target = event.target.value;
   switch (target) {
     case none:
       document.querySelector('.effect-image-preview').classList.add('.effect-none');
@@ -184,10 +184,9 @@ var formScale = document.querySelector('.upload-resize-controls-value');
 var scales = ['25%', '50%', '75%', '100%'];
 document.querySelector('.upload-resize-controls-value').setAttribute('value', scales[1]);
 
-var valuePhoto = document.querySelector('.upload-resize-controls-value').getAttribute('value');
-
 var buttonDec = document.querySelector('.upload-resize-controls-button-dec').addEventListener('click', function() {
-  document.querySelector('.upload-resize-controls-value').setAttribute('value', valuePhoto - stepScale);
+  var getValue = document.querySelector('.upload-resize-controls-value').getAttribute('value');
+  document.querySelector('.upload-resize-controls-value').setAttribute('value', scale - stepScale);
 });
 
 var buttonInc = document.querySelector('.upload-resize-controls-button-inc').addEventListener('click', function() {
