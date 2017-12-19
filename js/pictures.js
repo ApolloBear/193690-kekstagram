@@ -134,47 +134,25 @@ document.querySelector('.upload-form-submit').addEventListener('click', function
   document.querySelector('#upload-select-image').getAttribute('action');
 });
 
-// document.querySelector('.upload-form-submit').addEventListener('keydown', function (event) {
-//   event.preventDefault();
-//   if (event.keyCode === KEYCODE_ENTER) {
-//     document.querySelector('#upload-select-image').getAttribute('action');
-//   }
-// });
-
-// var focusComment = function getFocus() {
-//   document.querySelector('.upload-form-description').focus();
-// };
-
-//Через делегирование - не реализовано
-// document.querySelector('.upload-effect-controls').addEventListener('click', function(event) {
-//   if (event.target && event.nodeName == 'LABEL') {
-//     var effects = event.currentTarget;
-//     var photoEffect = effects.querySelector('.upload-effect-label').getAttribute('class');
-//   }
-// });
-
-// target.querySelector('.upload-effect-controls input').getAttribute('value');
-// var value = querySelector('.upload-effect-controls input').getAttribute('value');
-
-document.querySelector('.upload-effect-controls').addEventListener('click', function(event) {
-  var target = event.target.value;
-  switch (target) {
-    case none:
+document.querySelector('.upload-effect-controls input').addEventListener('click', function(event) {
+  var value = event.target.value;
+  switch (value) {
+    case 'none':
       document.querySelector('.effect-image-preview').classList.add('.effect-none');
       break;
-    case chrome:
+    case 'chrome':
       document.querySelector('.effect-image-preview').classList.add('.effect-chrome');
       break;
-    case sepia:
+    case 'sepia':
       document.querySelector('.effect-image-preview').classList.add('.effect-sepia');
       break;
-    case marvin:
+    case 'marvin':
       document.querySelector('.effect-image-preview').classList.add('.effect-marvin');
       break;
-    case phobos:
+    case 'phobos':
       document.querySelector('.effect-image-preview').classList.add('.effect-phobos');
       break;
-    case heat:
+    case 'heat':
       document.querySelector('.effect-image-preview').classList.add('.effect-heat');
       break;
   }
@@ -182,42 +160,14 @@ document.querySelector('.upload-effect-controls').addEventListener('click', func
 
 var formScale = document.querySelector('.upload-resize-controls-value');
 var scales = ['25%', '50%', '75%', '100%'];
-document.querySelector('.upload-resize-controls-value').setAttribute('value', scales[1]);
+document.querySelector('.upload-resize-controls-value').setAttribute('value', scales[3]);
 
 var buttonDec = document.querySelector('.upload-resize-controls-button-dec').addEventListener('click', function() {
   var getValue = document.querySelector('.upload-resize-controls-value').getAttribute('value');
-  document.querySelector('.upload-resize-controls-value').setAttribute('value', scale - stepScale);
+  var constantValue = scales.indexOf(3);
+  document.querySelector('.upload-resize-controls-value').setAttribute('value', );
 });
 
 var buttonInc = document.querySelector('.upload-resize-controls-button-inc').addEventListener('click', function() {
-  document.querySelector('.upload-resize-controls-value').setAttribute('value', valuePhoto + stepScale);
+  document.querySelector('.upload-resize-controls-value').setAttribute('value', );
 });
-
-// var stepScale = 25;
-// var minScale = 25;
-// var maxScale = 100;
-
-//
-// document.querySelector('.upload-effect-label').addEventListener('click', function() {
-//   document.querySelector('.effect-image-preview').classList.add('effect-none');
-// });
-//
-// document.querySelector('.upload-effect-label-chrome').addEventListener('click', function() {
-//   document.querySelector('.effect-image-preview').classList.add('effect-chrome');
-// });
-//
-// document.querySelector('.upload-effect-label-sepia').addEventListener('click', function() {
-//   document.querySelector('.effect-image-preview').classList.add('effect-sepia');
-// });
-//
-// document.querySelector('.upload-effect-label-marvin').addEventListener('click', function() {
-//   document.querySelector('.effect-image-preview').classList.add('effect-marvin');
-// });
-//
-// document.querySelector('.upload-effect-label-phobos').addEventListener('click', function() {
-//   document.querySelector('.effect-image-preview').classList.add('effect-phobos');
-// });
-//
-// document.querySelector('.upload-effect-label-heat').addEventListener('click', function() {
-//   document.querySelector('.effect-image-preview').classList.add('effect-heat');
-// });
