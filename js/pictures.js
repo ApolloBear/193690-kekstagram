@@ -134,40 +134,54 @@ document.querySelector('.upload-form-submit').addEventListener('click', function
   document.querySelector('#upload-select-image').getAttribute('action');
 });
 
-document.querySelector('.upload-effect-controls input').addEventListener('click', function(event) {
+document.querySelector('.upload-form-submit').addEventListener('click', function() {
+  event.preventDefault();
+  if (event.keyCode === KEYCODE_ENTER) {
+    document.querySelector('#upload-select-image').getAttribute('action');
+  }
+});
+
+document.querySelector('.upload-effect-controls').addEventListener('click', function(event) {
   var value = event.target.value;
   switch (value) {
     case 'none':
-      document.querySelector('.effect-image-preview').classList.add('.effect-none');
+      document.querySelector('.effect-image-preview').classList.remove('effect-chrome', 'effect-sepia', 'effect-marvin', 'effect-phobos', 'effect-heat');
+      document.querySelector('.effect-image-preview').classList.add('effect-none');
       break;
     case 'chrome':
-      document.querySelector('.effect-image-preview').classList.add('.effect-chrome');
+      document.querySelector('.effect-image-preview').classList.remove('effect-none', 'effect-sepia', 'effect-marvin', 'effect-phobos', 'effect-heat');
+      document.querySelector('.effect-image-preview').classList.add('effect-chrome');
       break;
     case 'sepia':
-      document.querySelector('.effect-image-preview').classList.add('.effect-sepia');
+      document.querySelector('.effect-image-preview').classList.remove('effect-none', 'effect-chrome', 'effect-marvin', 'effect-phobos', 'effect-heat');
+      document.querySelector('.effect-image-preview').classList.add('effect-sepia');
       break;
     case 'marvin':
-      document.querySelector('.effect-image-preview').classList.add('.effect-marvin');
+      document.querySelector('.effect-image-preview').classList.remove('effect-none', 'effect-chrome', 'effect-sepia', 'effect-phobos', 'effect-heat');
+      document.querySelector('.effect-image-preview').classList.add('effect-marvin');
       break;
     case 'phobos':
-      document.querySelector('.effect-image-preview').classList.add('.effect-phobos');
+      document.querySelector('.effect-image-preview').classList.remove('effect-none', 'effect-chrome', 'effect-sepia', 'effect-marvin', 'effect-heat');
+      document.querySelector('.effect-image-preview').classList.add('effect-phobos');
       break;
     case 'heat':
-      document.querySelector('.effect-image-preview').classList.add('.effect-heat');
+      document.querySelector('.effect-image-preview').classList.remove('effect-none', 'effect-chrome', 'effect-sepia', 'effect-marvin', 'effect-phobos');
+      document.querySelector('.effect-image-preview').classList.add('effect-heat');
       break;
   }
 });
 
 var formScale = document.querySelector('.upload-resize-controls-value');
-var scales = ['25%', '50%', '75%', '100%'];
-document.querySelector('.upload-resize-controls-value').setAttribute('value', scales[3]);
+var scales = ['25', '50', '75', '100'];
+document.querySelector('.upload-resize-controls-value').setAttribute('value', scales[3] + '%');
 
 var buttonDec = document.querySelector('.upload-resize-controls-button-dec').addEventListener('click', function() {
   var getValue = document.querySelector('.upload-resize-controls-value').getAttribute('value');
-  var constantValue = scales.indexOf(3);
-  document.querySelector('.upload-resize-controls-value').setAttribute('value', );
+  var constantValue = scales.indexOf(getValue);
+  document.querySelector('.upload-resize-controls-value').value = constantValue - scales[0] + '%';
+  console.log(constantValue);
 });
 
 var buttonInc = document.querySelector('.upload-resize-controls-button-inc').addEventListener('click', function() {
-  document.querySelector('.upload-resize-controls-value').setAttribute('value', );
+  document.querySelector('.upload-resize-controls-value').value = constantValue + scales[0] + '%';
 });
