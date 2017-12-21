@@ -172,19 +172,19 @@ document.querySelector('.upload-effect-controls').addEventListener('click', func
 });
 
 var formScale = document.querySelector('.upload-resize-controls-value');
-var scales = ['25', '50', '75', '100'];
-document.querySelector('.upload-resize-controls-value').setAttribute('value', scales[3] + '%');
+var scales = ['25%', '50%', '75%', '100%'];
+document.querySelector('.upload-resize-controls-value').setAttribute('value', scales[3]);
 
 var buttonDec = document.querySelector('.upload-resize-controls-button-dec').addEventListener('click', function() {
   var getValue = document.querySelector('.upload-resize-controls-value').value;
-  console.log(getValue);
   var constantValue = scales.indexOf(getValue);
-  console.log(constantValue);
-  document.querySelector('.upload-resize-controls-value').value = (scales[constantValue] - scales[0]) + '%';
+  document.querySelector('.upload-resize-controls-value').value = parseInt(scales[constantValue]) - parseInt(scales[0]) + '%';
+  console.log(inoutValue);
 });
-
 var buttonInc = document.querySelector('.upload-resize-controls-button-inc').addEventListener('click', function() {
   var getValue = document.querySelector('.upload-resize-controls-value').value;
   var constantValue = scales.indexOf(getValue);
-  document.querySelector('.upload-resize-controls-value').value = (scales[constantValue] + scales[0]) + '%';
+  document.querySelector('.upload-resize-controls-value').value = parseInt(scales[constantValue]) + parseInt(scales[0]) + '%';
 });
+var inoutValue = document.querySelector('.upload-resize-controls-value').value;
+console.log(inoutValue);
