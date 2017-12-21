@@ -176,12 +176,12 @@ var scales = ['25', '50', '75', '100'];
 document.querySelector('.upload-resize-controls-value').setAttribute('value', scales[3] + '%');
 
 var buttonDec = document.querySelector('.upload-resize-controls-button-dec').addEventListener('click', function() {
-  var getValue = document.querySelector('.upload-resize-controls-value').getAttribute('value');
   var constantValue = scales.indexOf(getValue);
-  document.querySelector('.upload-resize-controls-value').value = constantValue - scales[0] + '%';
-  console.log(constantValue);
+  var getValue = document.querySelector('.upload-resize-controls-value').getAttribute('value');
+  document.querySelector('.upload-resize-controls-value').value = scales[0] - scales.indexOf(getValue) + '%';
 });
 
 var buttonInc = document.querySelector('.upload-resize-controls-button-inc').addEventListener('click', function() {
-  document.querySelector('.upload-resize-controls-value').value = constantValue + scales[0] + '%';
+  var getValue = document.querySelector('.upload-resize-controls-value').getAttribute('value');
+  document.querySelector('.upload-resize-controls-value').value = scales[0] + scales.indexOf(getValue) + '%';
 });
