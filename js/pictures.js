@@ -176,12 +176,15 @@ var scales = ['25', '50', '75', '100'];
 document.querySelector('.upload-resize-controls-value').setAttribute('value', scales[3] + '%');
 
 var buttonDec = document.querySelector('.upload-resize-controls-button-dec').addEventListener('click', function() {
+  var getValue = document.querySelector('.upload-resize-controls-value').value;
+  console.log(getValue);
   var constantValue = scales.indexOf(getValue);
-  var getValue = document.querySelector('.upload-resize-controls-value').getAttribute('value');
-  document.querySelector('.upload-resize-controls-value').value = scales[0] - scales.indexOf(getValue) + '%';
+  console.log(constantValue);
+  document.querySelector('.upload-resize-controls-value').value = (scales[constantValue] - scales[0]) + '%';
 });
 
 var buttonInc = document.querySelector('.upload-resize-controls-button-inc').addEventListener('click', function() {
-  var getValue = document.querySelector('.upload-resize-controls-value').getAttribute('value');
-  document.querySelector('.upload-resize-controls-value').value = scales[0] + scales.indexOf(getValue) + '%';
+  var getValue = document.querySelector('.upload-resize-controls-value').value;
+  var constantValue = scales.indexOf(getValue);
+  document.querySelector('.upload-resize-controls-value').value = (scales[constantValue] + scales[0]) + '%';
 });
