@@ -176,15 +176,33 @@ var scales = ['25%', '50%', '75%', '100%'];
 document.querySelector('.upload-resize-controls-value').setAttribute('value', scales[3]);
 
 var buttonDec = document.querySelector('.upload-resize-controls-button-dec').addEventListener('click', function() {
-  var getValue = document.querySelector('.upload-resize-controls-value').value;
-  var constantValue = scales.indexOf(getValue);
-  document.querySelector('.upload-resize-controls-value').value = parseInt(scales[constantValue]) - parseInt(scales[0]) + '%';
-  console.log(inoutValue);
+  var getValueDec = document.querySelector('.upload-resize-controls-value').value;
+  var constantValue = scales.indexOf(getValueDec);
+  var setValueDec = document.querySelector('.upload-resize-controls-value').value = parseInt(scales[constantValue]) - parseInt(scales[0]) + '%';
+  var pushValueDec = document.querySelector('.upload-resize-controls-value').setAttribute('value', setValueDec);
+  if (getValueDec = scales[3]) {
+    document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(1.0)');
+  } else if (getValueDec = scales[2]) {
+    document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.75)');
+  } else if (getValueDec = scales[1]) {
+    document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.50)');
+  } else if (getValueDec = scales[0]) {
+    document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.25)');
+  }
 });
+
 var buttonInc = document.querySelector('.upload-resize-controls-button-inc').addEventListener('click', function() {
-  var getValue = document.querySelector('.upload-resize-controls-value').value;
-  var constantValue = scales.indexOf(getValue);
-  document.querySelector('.upload-resize-controls-value').value = parseInt(scales[constantValue]) + parseInt(scales[0]) + '%';
+  var getValueInc = document.querySelector('.upload-resize-controls-value').value;
+  var constantValue = scales.indexOf(getValueInc);
+  var setValueInc = document.querySelector('.upload-resize-controls-value').value = parseInt(scales[constantValue]) + parseInt(scales[0]) + '%';
+  var pushValueInc = document.querySelector('.upload-resize-controls-value').setAttribute('value', setValueInc);
+  if (getValueInc = scales[3]) {
+    document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(1.0)');
+  } else if (getValueInc = scales[2]) {
+    document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.75)');
+  } else if (getValueInc = scales[1]) {
+    document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.50)');
+  } else if (getValueInc = scales[0]) {
+    document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.25)');
+  }
 });
-var inoutValue = document.querySelector('.upload-resize-controls-value').value;
-console.log(inoutValue);
