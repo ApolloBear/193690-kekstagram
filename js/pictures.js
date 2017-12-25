@@ -174,44 +174,29 @@ document.querySelector('.upload-effect-controls').addEventListener('click', func
 var formScale = document.querySelector('.upload-resize-controls-value');
 var scales = ['25%', '50%', '75%', '100%'];
 
-// var maxScales = getMaxValue(scales);
-// var minScales = getMinValue(scales);
-// function getMaxValue(scales) {
-//   var maxScales = scales[3];
-//   for (var i = 0; i < scales.length; i++) {
-//     if (maxScales < scales[i]) maxScales = scales[i];
-//   }
-//   return maxScales;
-// }
-//
-// function getMinValue(scales) {
-//   var minScales = scales[0];
-//   for (var i = 0; i < scales.length; i++) {
-//     if (minScales > scales[i]) minScales = scales[i];
-//   }
-//   return minScales;
-// }
-
 document.querySelector('.upload-resize-controls-value').setAttribute('value', scales[3]);
 
 var buttonDec = document.querySelector('.upload-resize-controls-button-dec').addEventListener('click', function() {
   var getValueDec = document.querySelector('.upload-resize-controls-value').value;
-  var constantValue = scales.indexOf(getValueDec);
-  var setValueDec = document.querySelector('.upload-resize-controls-value').value = parseInt(scales[constantValue]) - parseInt(scales[0]) + '%';
-  var pushValueDec = document.querySelector('.upload-resize-controls-value').setAttribute('value', setValueDec);
-  switch (setValueDec) {
-    case '100%':
-      document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(1.0)');
-      break;
-    case '75%':
-      document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.75)');
-      break;
-    case '50%':
-      document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.50)');
-      break;
-    case '25%':
-      document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.25)');
-      break;
+    var constantValue = scales.indexOf(getValueDec);
+    var setValueDec = document.querySelector('.upload-resize-controls-value').value = parseInt(scales[constantValue]) - parseInt(scales[0]) + '%';
+    if (setValueDec >= scales[0] && setValueDec <= scales[3]) {
+    console.log(setValueDec);
+    var pushValueDec = document.querySelector('.upload-resize-controls-value').setAttribute('value', setValueDec);
+    switch (setValueDec) {
+      case '100%':
+        document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(1.0)');
+        break;
+      case '75%':
+        document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.75)');
+        break;
+      case '50%':
+        document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.50)');
+        break;
+      case '25%':
+        document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.25)');
+        break;
+    }
   }
 });
 
@@ -236,4 +221,13 @@ var buttonInc = document.querySelector('.upload-resize-controls-button-inc').add
   }
 });
 
-// var inputHashtags = doqument.querySelector('upload-form-hashtags');
+var inputHashtags = document.querySelector('.upload-form-hashtags');
+inputHashtags.length = 5;
+
+inputHashtags.addEventListener('invalid', function (event) {
+  if (inputHashtags.validity.tooLong) {
+    inputHashtags.setCustomValidity('Максимальная длинна хэш-тега не должна превышать 104 символа');
+  } else {
+    inputHashtags.setCustomValidity('');
+  }
+});
