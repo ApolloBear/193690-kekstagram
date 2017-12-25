@@ -173,6 +173,25 @@ document.querySelector('.upload-effect-controls').addEventListener('click', func
 
 var formScale = document.querySelector('.upload-resize-controls-value');
 var scales = ['25%', '50%', '75%', '100%'];
+
+// var maxScales = getMaxValue(scales);
+// var minScales = getMinValue(scales);
+// function getMaxValue(scales) {
+//   var maxScales = scales[3];
+//   for (var i = 0; i < scales.length; i++) {
+//     if (maxScales < scales[i]) maxScales = scales[i];
+//   }
+//   return maxScales;
+// }
+//
+// function getMinValue(scales) {
+//   var minScales = scales[0];
+//   for (var i = 0; i < scales.length; i++) {
+//     if (minScales > scales[i]) minScales = scales[i];
+//   }
+//   return minScales;
+// }
+
 document.querySelector('.upload-resize-controls-value').setAttribute('value', scales[3]);
 
 var buttonDec = document.querySelector('.upload-resize-controls-button-dec').addEventListener('click', function() {
@@ -180,14 +199,19 @@ var buttonDec = document.querySelector('.upload-resize-controls-button-dec').add
   var constantValue = scales.indexOf(getValueDec);
   var setValueDec = document.querySelector('.upload-resize-controls-value').value = parseInt(scales[constantValue]) - parseInt(scales[0]) + '%';
   var pushValueDec = document.querySelector('.upload-resize-controls-value').setAttribute('value', setValueDec);
-  if (getValueDec = scales[3]) {
-    document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(1.0)');
-  } else if (getValueDec = scales[2]) {
-    document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.75)');
-  } else if (getValueDec = scales[1]) {
-    document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.50)');
-  } else if (getValueDec = scales[0]) {
-    document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.25)');
+  switch (setValueDec) {
+    case '100%':
+      document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(1.0)');
+      break;
+    case '75%':
+      document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.75)');
+      break;
+    case '50%':
+      document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.50)');
+      break;
+    case '25%':
+      document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.25)');
+      break;
   }
 });
 
@@ -196,13 +220,20 @@ var buttonInc = document.querySelector('.upload-resize-controls-button-inc').add
   var constantValue = scales.indexOf(getValueInc);
   var setValueInc = document.querySelector('.upload-resize-controls-value').value = parseInt(scales[constantValue]) + parseInt(scales[0]) + '%';
   var pushValueInc = document.querySelector('.upload-resize-controls-value').setAttribute('value', setValueInc);
-  if (getValueInc = scales[3]) {
-    document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(1.0)');
-  } else if (getValueInc = scales[2]) {
-    document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.75)');
-  } else if (getValueInc = scales[1]) {
-    document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.50)');
-  } else if (getValueInc = scales[0]) {
-    document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.25)');
+  switch (setValueInc) {
+    case '100%':
+      document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(1.0)');
+      break;
+    case '75%':
+      document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.75)');
+      break;
+    case '50%':
+      document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.50)');
+      break;
+    case '25%':
+      document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.25)');
+      break;
   }
 });
+
+// var inputHashtags = doqument.querySelector('upload-form-hashtags');
