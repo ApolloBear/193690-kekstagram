@@ -131,13 +131,13 @@ document.querySelector('.upload-form-cancel').addEventListener('keydown', functi
 });
 
 document.querySelector('.upload-form-submit').addEventListener('click', function() {
-  document.querySelector('#upload-select-image').getAttribute('action');
+  document.querySelector('#upload-select-image').submit();
 });
 
 document.querySelector('.upload-form-submit').addEventListener('click', function() {
   event.preventDefault();
   if (event.keyCode === KEYCODE_ENTER) {
-    document.querySelector('#upload-select-image').getAttribute('action');
+    document.querySelector('#upload-select-image').submit();
   }
 });
 
@@ -178,10 +178,12 @@ document.querySelector('.upload-resize-controls-value').setAttribute('value', sc
 
 var buttonDec = document.querySelector('.upload-resize-controls-button-dec').addEventListener('click', function() {
   var getValueDec = document.querySelector('.upload-resize-controls-value').value;
-    var constantValue = scales.indexOf(getValueDec);
-    var setValueDec = document.querySelector('.upload-resize-controls-value').value = parseInt(scales[constantValue]) - parseInt(scales[0]) + '%';
-    if (setValueDec >= scales[0] && setValueDec <= scales[3]) {
-    console.log(setValueDec);
+  var constantValue = scales.indexOf(getValueDec);
+  var numScaleMin = parseInt(scales[0], 10);
+  var numScaleMax = parseInt(scales[3], 10);
+  var setValueDec = document.querySelector('.upload-resize-controls-value').value = parseInt(scales[constantValue]) - parseInt(scales[0]) + '%';
+  var numSetBalueDec = parseInt(setValueDec, 10);
+  if (numSetBalueDec >= numScaleMin && numSetBalueDec <= numScaleMax) {
     var pushValueDec = document.querySelector('.upload-resize-controls-value').setAttribute('value', setValueDec);
     switch (setValueDec) {
       case '100%':
@@ -222,12 +224,24 @@ var buttonInc = document.querySelector('.upload-resize-controls-button-inc').add
 });
 
 var inputHashtags = document.querySelector('.upload-form-hashtags');
-inputHashtags.length = 5;
+var hashtags = inputHashtags.value;
+hashtags = hashtags.toLowerCase();
+hashtags = hashtags.split(' ');
+if (hashtags.length > 5) {
+  hashtags.setCustomValidity('Не может быть больше 5 хэш-тегов');
+}
 
-inputHashtags.addEventListener('invalid', function (event) {
-  if (inputHashtags.validity.tooLong) {
-    inputHashtags.setCustomValidity('Максимальная длинна хэш-тега не должна превышать 104 символа');
-  } else {
-    inputHashtags.setCustomValidity('');
+for (var i = 0; i < hashtags.length; i++) {
+  if (hashtags[i].length > 20) {
+    inputHashtags.setCustomValidity('Хэш-тег не может быть более 20 символов');
+    break;
   }
-});
+  if (hashtags[i].charAt(0) !== '#') {
+    inputHashtags.setCustomValidity('Хэш-тег должен начинаться с #');
+    break;
+  }
+  if (hashtags.indexOf(hashtags[i]) !== i) {
+    inputHashtags.setCustomValidity('Хэш-тег не может повторяться');
+    break;
+  }
+}
