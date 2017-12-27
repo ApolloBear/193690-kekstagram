@@ -131,13 +131,13 @@ document.querySelector('.upload-form-cancel').addEventListener('keydown', functi
 });
 
 document.querySelector('.upload-form-submit').addEventListener('click', function() {
-  document.getElementById('upload-select-image').submit();
+  document.querySelector('#upload-select-image').submit();
 });
 
 document.querySelector('.upload-form-submit').addEventListener('click', function() {
   event.preventDefault();
   if (event.keyCode === KEYCODE_ENTER) {
-    document.getElementById('upload-select-image').submit();
+    document.querySelector('#upload-select-image').submit();
   }
 });
 
@@ -205,7 +205,8 @@ var buttonDec = document.querySelector('.upload-resize-controls-button-dec').add
 var buttonInc = document.querySelector('.upload-resize-controls-button-inc').addEventListener('click', function() {
   var getValueInc = document.querySelector('.upload-resize-controls-value').value;
   var constantValue = scales.indexOf(getValueInc);
-  var setValueInc = document.querySelector('.upload-resize-controls-value').value = parseInt(scales[constantValue]) + parseInt(scales[0]) + '%';
+  var setValueInc = document.querySelector('.upload-resize-controls-value');
+  setValueInc.value = parseInt(scales[constantValue]) + parseInt(scales[0]) + '%';
   var pushValueInc = document.querySelector('.upload-resize-controls-value').setAttribute('value', setValueInc);
   switch (setValueInc) {
     case '100%':
