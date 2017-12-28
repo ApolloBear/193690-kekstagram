@@ -130,16 +130,16 @@ document.querySelector('.upload-form-cancel').addEventListener('keydown', functi
   }
 });
 
-document.querySelector('.upload-form-submit').addEventListener('click', function() {
-  document.querySelector('#upload-select-image').submit();
-});
-
-document.querySelector('.upload-form-submit').addEventListener('click', function() {
-  event.preventDefault();
-  if (event.keyCode === KEYCODE_ENTER) {
-    document.querySelector('#upload-select-image').submit();
-  }
-});
+// document.querySelector('.upload-form-submit').addEventListener('click', function() {
+//   document.querySelector('#upload-select-image').submit();
+// });
+//
+// document.querySelector('.upload-form-submit').addEventListener('click', function() {
+//   event.preventDefault();
+//   if (event.keyCode === KEYCODE_ENTER) {
+//     document.querySelector('#upload-select-image').submit();
+//   }
+// });
 
 document.querySelector('.upload-effect-controls').addEventListener('click', function(event) {
   var value = event.target.value;
@@ -173,17 +173,18 @@ document.querySelector('.upload-effect-controls').addEventListener('click', func
 
 var formScale = document.querySelector('.upload-resize-controls-value');
 var scales = ['25%', '50%', '75%', '100%'];
+var numScaleMin = parseInt(scales[0], 10);
+var numScaleMax = parseInt(scales[3], 10);
 
 document.querySelector('.upload-resize-controls-value').setAttribute('value', scales[3]);
 
 var buttonDec = document.querySelector('.upload-resize-controls-button-dec').addEventListener('click', function() {
   var getValueDec = document.querySelector('.upload-resize-controls-value').value;
   var constantValue = scales.indexOf(getValueDec);
-  var numScaleMin = parseInt(scales[0], 10);
-  var numScaleMax = parseInt(scales[3], 10);
-  var setValueDec = document.querySelector('.upload-resize-controls-value').value = parseInt(scales[constantValue]) - parseInt(scales[0]) + '%';
-  var numSetBalueDec = parseInt(setValueDec, 10);
+
+  var numSetBalueDec = parseInt(scales[constantValue]) - parseInt(scales[0]);
   if (numSetBalueDec >= numScaleMin && numSetBalueDec <= numScaleMax) {
+    var setValueDec = parseInt(scales[constantValue]) - parseInt(scales[0]) + '%';
     var pushValueDec = document.querySelector('.upload-resize-controls-value').setAttribute('value', setValueDec);
     switch (setValueDec) {
       case '100%':
@@ -205,43 +206,47 @@ var buttonDec = document.querySelector('.upload-resize-controls-button-dec').add
 var buttonInc = document.querySelector('.upload-resize-controls-button-inc').addEventListener('click', function() {
   var getValueInc = document.querySelector('.upload-resize-controls-value').value;
   var constantValue = scales.indexOf(getValueInc);
-  var setValueInc = document.querySelector('.upload-resize-controls-value');
-  setValueInc.value = parseInt(scales[constantValue]) + parseInt(scales[0]) + '%';
-  var pushValueInc = document.querySelector('.upload-resize-controls-value').setAttribute('value', setValueInc);
-  switch (setValueInc) {
-    case '100%':
-      document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(1.0)');
-      break;
-    case '75%':
-      document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.75)');
-      break;
-    case '50%':
-      document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.50)');
-      break;
-    case '25%':
-      document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.25)');
-      break;
+
+  var numSetBalueInt = parseInt(scales[constantValue]) + parseInt(scales[0]);
+  if (numSetBalueInt >= numScaleMin && numSetBalueInt <= numScaleMax) {
+    var setValueInc = parseInt(scales[constantValue]) + parseInt(scales[0]) + '%';
+    var pushValueInc = document.querySelector('.upload-resize-controls-value').setAttribute('value', setValueInc);
+    switch (setValueInc) {
+      case '100%':
+        document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(1.0)');
+        break;
+      case '75%':
+        document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.75)');
+        break;
+      case '50%':
+        document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.50)');
+        break;
+      case '25%':
+        document.querySelector('.effect-image-preview').setAttribute('style', 'transform: scale(0.25)');
+        break;
+    }
   }
 });
 
-var inputHashtags = document.querySelector('.upload-form-hashtags');
-var hashtags = inputHashtags.value;
+var inputHashtag = document.querySelector('.upload-form-hashtags');
+var hashtags = inputHashtag.value;
+console.log(hashtags);
 var hashtagList = hashtags.toLowerCase().split(' ');
-if (hashtagList.length > 5) {
-  inputHashtags.setCustomValidity('Не может быть больше 5 хэш-тегов');
-}
+console.log(hashtagList);
+
+if (hashtagList.length > 5) inputHashtag.setCustomValidity('Не может быть больше 5 хэш-тегов');
 
 for (var i = 0; i < hashtagList.length; i++) {
   if (hashtagList[i].length > 20) {
-    inputHashtags.setCustomValidity('Хэш-тег не может быть более 20 символов');
+    inputHashtag.setCustomValidity('Хэш-тег не может быть более 20 символов');
     break;
   }
   if (hashtagList[i].charAt(0) !== '#') {
-    inputHashtags.setCustomValidity('Хэш-тег должен начинаться с #');
+    inputHashtag.setCustomValidity('Хэш-тег должен начинаться с #');
     break;
   }
   if (hashtagList.indexOf(hashtags[i]) !== i) {
-    inputHashtags.setCustomValidity('Хэш-тег не может повторяться');
+    inputHashtag.setCustomValidity('Хэш-тег не может повторяться');
     break;
   }
 }
