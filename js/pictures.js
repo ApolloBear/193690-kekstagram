@@ -107,36 +107,40 @@ document.addEventListener('keydown', function(event) {
   }
 });
 
+var uploadImage = document.querySelector('.upload-overlay');
+
 document.querySelector('#upload-select-image').addEventListener('change', function() {
   if (document.activeElement.className !== 'upload-form-description') {
-    document.querySelector('.upload-overlay').classList.remove('hidden');
+    uploadImage.classList.remove('hidden');
   }
 });
 
 document.querySelector('.upload-form-cancel').addEventListener('click', function() {
-  document.querySelector('.upload-overlay').classList.add('hidden');
+  uploadImage.classList.add('hidden');
 });
 
 document.addEventListener('keydown', function(event) {
   if (event.keyCode === KEYCODE_ESC) {
-    document.querySelector('.upload-overlay').classList.add('hidden');
+    uploadImage.classList.add('hidden');
   }
 });
 
 document.querySelector('.upload-form-cancel').addEventListener('keydown', function(event) {
   event.preventDefault();
   if (event.keyCode === KEYCODE_ENTER) {
-    document.querySelector('.upload-overlay').classList.add('hidden');
+    uploadImage.classList.add('hidden');
   }
 });
 
-document.querySelector('.upload-form-submit').addEventListener('click', function() {
+var buttonSubmit = document.querySelector('.upload-form-submit');
+
+buttonSubmit.addEventListener('click', function() {
   if (checkForm()) {
     document.querySelector('#upload-select-image').submit();
   }
 });
 
-document.querySelector('.upload-form-submit').addEventListener('click', function() {
+buttonSubmit.addEventListener('click', function() {
   event.preventDefault();
   if (event.keyCode === KEYCODE_ENTER) {
     if (checkForm()) {
@@ -147,30 +151,31 @@ document.querySelector('.upload-form-submit').addEventListener('click', function
 
 document.querySelector('.upload-effect-controls').addEventListener('click', function(event) {
   var value = event.target.value;
+  var effectImage = document.querySelector('.effect-image-preview');
   switch (value) {
     case 'none':
-      document.querySelector('.effect-image-preview').classList.remove('effect-chrome', 'effect-sepia', 'effect-marvin', 'effect-phobos', 'effect-heat');
-      document.querySelector('.effect-image-preview').classList.add('effect-none');
+      effectImage.classList.remove('effect-chrome', 'effect-sepia', 'effect-marvin', 'effect-phobos', 'effect-heat');
+      effectImage.classList.add('effect-none');
       break;
     case 'chrome':
-      document.querySelector('.effect-image-preview').classList.remove('effect-none', 'effect-sepia', 'effect-marvin', 'effect-phobos', 'effect-heat');
-      document.querySelector('.effect-image-preview').classList.add('effect-chrome');
+      effectImage.classList.remove('effect-none', 'effect-sepia', 'effect-marvin', 'effect-phobos', 'effect-heat');
+      effectImage.classList.add('effect-chrome');
       break;
     case 'sepia':
-      document.querySelector('.effect-image-preview').classList.remove('effect-none', 'effect-chrome', 'effect-marvin', 'effect-phobos', 'effect-heat');
-      document.querySelector('.effect-image-preview').classList.add('effect-sepia');
+      effectImage.classList.remove('effect-none', 'effect-chrome', 'effect-marvin', 'effect-phobos', 'effect-heat');
+      effectImage.classList.add('effect-sepia');
       break;
     case 'marvin':
-      document.querySelector('.effect-image-preview').classList.remove('effect-none', 'effect-chrome', 'effect-sepia', 'effect-phobos', 'effect-heat');
-      document.querySelector('.effect-image-preview').classList.add('effect-marvin');
+      effectImage.classList.remove('effect-none', 'effect-chrome', 'effect-sepia', 'effect-phobos', 'effect-heat');
+      effectImage.classList.add('effect-marvin');
       break;
     case 'phobos':
-      document.querySelector('.effect-image-preview').classList.remove('effect-none', 'effect-chrome', 'effect-sepia', 'effect-marvin', 'effect-heat');
-      document.querySelector('.effect-image-preview').classList.add('effect-phobos');
+      effectImage.classList.remove('effect-none', 'effect-chrome', 'effect-sepia', 'effect-marvin', 'effect-heat');
+      effectImage.classList.add('effect-phobos');
       break;
     case 'heat':
-      document.querySelector('.effect-image-preview').classList.remove('effect-none', 'effect-chrome', 'effect-sepia', 'effect-marvin', 'effect-phobos');
-      document.querySelector('.effect-image-preview').classList.add('effect-heat');
+      effectImage.classList.remove('effect-none', 'effect-chrome', 'effect-sepia', 'effect-marvin', 'effect-phobos');
+      effectImage.classList.add('effect-heat');
       break;
   }
 });
@@ -180,7 +185,7 @@ var scales = ['25%', '50%', '75%', '100%'];
 var numScaleMin = parseInt(scales[0], 10);
 var numScaleMax = parseInt(scales[3], 10);
 
-document.querySelector('.upload-resize-controls-value').setAttribute('value', scales[3]);
+formScale.setAttribute('value', scales[3]);
 
 var buttonDec = document.querySelector('.upload-resize-controls-button-dec').addEventListener('click', function() {
   var getValueDec = document.querySelector('.upload-resize-controls-value').value;
@@ -267,4 +272,4 @@ var checkForm = function() {
     }
   }
   return isFormValid;
-}
+};
