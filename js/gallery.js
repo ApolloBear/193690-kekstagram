@@ -26,32 +26,3 @@ var setPicturePage = function(elemImg, elemLike, elemComment) {
   document.querySelector('.gallery-overlay-controls-like .likes-count').textContent = elemLike;
   document.querySelector('.gallery-overlay-controls-comments .comments-count').textContent = elemComment;
 };
-
-var KEYCODE_ESC = 27;
-var KEYCODE_ENTER = 13;
-
-picturePage.forEach(function(picture) {
-  picture.addEventListener('click', pictureClickHandler);
-});
-
-
-var keyboardOpen = document.querySelector('.picture');
-keyboardOpen.addEventListener('keydown', function(event) {
-  event.preventDefault();
-  if (event.keyCode === KEYCODE_ENTER) {
-    document.querySelector('.gallery-overlay').classList.remove('hidden');
-  }
-});
-
-document.querySelector('.gallery-overlay-close').addEventListener('keydown', function(event) {
-  event.preventDefault();
-  if (event.keyCode === KEYCODE_ENTER) {
-    document.querySelector('.gallery-overlay').classList.add('hidden');
-  }
-});
-
-document.addEventListener('keydown', function(event) {
-  if (event.keyCode === KEYCODE_ESC) {
-    document.querySelector('.gallery-overlay').classList.add('hidden');
-  }
-});

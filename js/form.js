@@ -1,37 +1,42 @@
 'use strict';
-var checkForm = function() {
-  var isFormValid = true;
-  var inputHashtag = document.querySelector('.upload-form-hashtags');
-  var hashtags = inputHashtag.value;
-  console.log(hashtags);
-  var hashtagList = hashtags.toLowerCase().split(' ');
-  console.log(hashtagList);
+var uploadImage = document.querySelector('.upload-overlay');
 
-  if (hashtagList.length > 5) {
-    inputHashtag.setCustomValidity('Не может быть больше 5 хэш-тегов');
-    inputHashtag.reportValidity();
-    return false;
+document.querySelector('#upload-select-image').addEventListener('change', function() {
+  if (document.activeElement.className !== 'upload-form-description') {
+    uploadImage.classList.remove('hidden');
   }
+});
 
-  for (var i = 0; i < hashtagList.length; i++) {
-    if (hashtagList[i].length > 20) {
-      inputHashtag.setCustomValidity('Хэш-тег не может быть более 20 символов');
-      inputHashtag.reportValidity();
-      isFormValid = false;
-      break;
-    } else if (hashtagList[i].charAt(0) !== '#') {
-      inputHashtag.setCustomValidity('Хэш-тег должен начинаться с #');
-      inputHashtag.reportValidity();
-      isFormValid = false;
-      break;
-    } else if (hashtagList.indexOf(hashtagList[i]) !== i) {
-      inputHashtag.setCustomValidity('Хэш-тег не может повторяться');
-      inputHashtag.reportValidity();
-      isFormValid = false;
-      break;
-    } else {
-      inputHashtag.setCustomValidity('');
+document.querySelector('.upload-form-cancel').addEventListener('click', function() {
+  uploadImage.classList.add('hidden');
+});
+
+document.addEventListener('keydown', function(event) {
+  if (event.keyCode === KEYCODE_ESC) {
+    uploadImage.classList.add('hidden');
+  }
+});
+
+document.querySelector('.upload-form-cancel').addEventListener('keydown', function(event) {
+  event.preventDefault();
+  if (event.keyCode === KEYCODE_ENTER) {
+    uploadImage.classList.add('hidden');
+  }
+});
+
+var buttonSubmit = document.querySelector('.upload-form-submit');
+
+buttonSubmit.addEventListener('click', function() {
+  if (checkForm()) {
+    document.querySelector('#upload-select-image').submit();
+  }
+});
+
+buttonSubmit.addEventListener('click', function() {
+  event.preventDefault();
+  if (event.keyCode === KEYCODE_ENTER) {
+    if (checkForm()) {
+      document.querySelector('#upload-select-image').submit();
     }
   }
-  return isFormValid;
-};
+});
