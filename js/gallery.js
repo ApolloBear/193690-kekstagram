@@ -1,4 +1,9 @@
 'use strict';
+var popUpClose = document.querySelector('.gallery-overlay-close');
+popUpClose.addEventListener('click', function() {
+  document.querySelector('.gallery-overlay').classList.add('hidden');
+});
+
 var popUpImage = document.querySelector('.gallery-overlay-image');
 popUpImage.setAttribute('src', photoObjects[0].url);
 
@@ -26,3 +31,7 @@ var setPicturePage = function(elemImg, elemLike, elemComment) {
   document.querySelector('.gallery-overlay-controls-like .likes-count').textContent = elemLike;
   document.querySelector('.gallery-overlay-controls-comments .comments-count').textContent = elemComment;
 };
+
+picturePage.forEach(function(picture) {
+  picture.addEventListener('click', pictureClickHandler);
+});
