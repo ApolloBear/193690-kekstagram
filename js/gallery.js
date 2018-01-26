@@ -1,4 +1,5 @@
 'use strict';
+(function () {
 var popUpClose = document.querySelector('.gallery-overlay-close');
 popUpClose.addEventListener('click', function() {
   document.querySelector('.gallery-overlay').classList.add('hidden');
@@ -35,3 +36,4 @@ var setPicturePage = function(elemImg, elemLike, elemComment) {
 picturePage.forEach(function(picture) {
   picture.addEventListener('click', pictureClickHandler);
 });
+}) ();

@@ -1,4 +1,5 @@
 'use strict';
+(function () {
 var checkForm = function() {
   var isFormValid = true;
   var inputHashtag = document.querySelector('.upload-form-hashtags');
@@ -35,3 +36,4 @@ var checkForm = function() {
   }
   return isFormValid;
 };
+}) ();

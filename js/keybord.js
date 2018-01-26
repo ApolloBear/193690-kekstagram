@@ -1,4 +1,5 @@
 'use strict';
+(function () {
 var KEYCODE_ESC = 27;
 var KEYCODE_ENTER = 13;
 
@@ -27,3 +28,4 @@ document.addEventListener('keydown', function(event) {
     document.querySelector('.gallery-overlay').classList.add('hidden');
   }
 });
+}) ();

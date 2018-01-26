@@ -1,5 +1,7 @@
 'use strict';
+(function () {
 var photoObjects = [];
+window.photoObjects = [];
 var objectComments = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -14,7 +16,7 @@ var objectLikes = getRandomint(15, 200);
 var randomComment = objectComments[Math.floor(Math.random() * objectComments.length)];
 
 for (var i = 0; i <= 24; i++) {
-  photoObjects[i] = {
+  window.photoObjects[i] = {
     url: 'photos/' + (i + 1) + '.jpg',
     likes: objectLikes,
     comments: randomComment,
@@ -26,7 +28,7 @@ for (var i = 0; i <= 24; i++) {
 
 var renderPhoto = function(photoObject) {
   var clonePictureTemplate = originalPictureTemplate.cloneNode(true).content;
-  clonePictureTemplate.querySelector('.picture img').setAttribute('src', photoObject.url);
+  window.clonePictureTemplate.querySelector('.picture img').setAttribute('src', photoObject.url);
   clonePictureTemplate.querySelector('.picture-likes').textContent = photoObject.likes;
   clonePictureTemplate.querySelector('.picture-comments').textContent = photoObject.comments;
   return clonePictureTemplate;
@@ -45,3 +47,4 @@ pageListPhoto.appendChild(fragment);
 function getRandomint() {
   return Math.floor(Math.random() * (200 - 15)) + 15;
 }
+}) ();

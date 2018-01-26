@@ -1,4 +1,5 @@
 'use strict';
+(function () {
 var formScale = document.querySelector('.upload-resize-controls-value');
 var scales = ['25%', '50%', '75%', '100%'];
 var numScaleMin = parseInt(scales[0], 10);
@@ -55,3 +56,4 @@ var buttonInc = document.querySelector('.upload-resize-controls-button-inc').add
     }
   }
 });
+}) ();

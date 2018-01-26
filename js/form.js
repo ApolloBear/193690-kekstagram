@@ -1,4 +1,5 @@
 'use strict';
+(function () {
 var uploadImage = document.querySelector('.upload-overlay');
 
 document.querySelector('#upload-select-image').addEventListener('change', function() {
@@ -40,3 +41,4 @@ buttonSubmit.addEventListener('click', function() {
     }
   }
 });
+}) ();

@@ -1,4 +1,5 @@
 'use strict';
+(function () {
 document.querySelector('.upload-effect-controls').addEventListener('click', function(event) {
   var value = event.target.value;
   var effectImage = document.querySelector('.effect-image-preview');
@@ -29,3 +30,4 @@ document.querySelector('.upload-effect-controls').addEventListener('click', func
       break;
   }
 });
+}) ();
